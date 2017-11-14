@@ -7,4 +7,4 @@ app.service("AuthService", function(){
   };
 
   return {authenticateGoogle};
-})
+});

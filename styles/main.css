@@ -1,2 +1,6 @@
 body {
   background-color: #5196d6; }
+
+#googleButton {
+  background-color: #5196d6;
+  border: none; }

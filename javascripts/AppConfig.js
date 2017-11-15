@@ -1,7 +1,8 @@
 "use strict";
 
-app.run(function(FIREBASE_CONFIG){
+app.run(function(FIREBASE_CONFIG, TMDB_CONFIG){
   firebase.initializeApp(FIREBASE_CONFIG);
+  tmdbService.tmdbConfiguration(TMDB_CONFIG);
 });
 
 app.config(function($routeProvider){

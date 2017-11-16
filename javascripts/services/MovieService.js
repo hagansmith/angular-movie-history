@@ -14,9 +14,27 @@ app.service("MovieService", function($http, $q, FIREBASE_CONFIG){
           resolve(movies);
         });
           }).catch((err)=>{
-        console.log(err);
+        reject(err);
       });
     });
   };
-  return {getRatedMovies};
+
+  const getWishlistMovies = (userUid) => {
+    let movies = [];
+    return $q((resolve, reject) => {
+      $http.get(`${FIREBASE_CONFIG.databaseURL}/movies.json?orderBy="uid"&equalTo="${userUid}"`).then((results)=>{
+        let fbMovies = results.data;
+        Object.keys(fbMovies).forEach((key) => {
+          fbMovies[key].id = key;
+          if (!fbMovies[key].isWatched) {
+            movies.push(fbMovies[key]);
+          }
+          resolve(movies);
+        });
+          }).catch((err)=>{
+        reject(err);
+      });
+    });
+  };
+  return {getRatedMovies, getWishlistMovies};
 });

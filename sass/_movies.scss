@@ -7,9 +7,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .overview {
     overflow: hidden;
     text-overflow: ellipsis;
     height: 100px;
+  }
+
+  .thumbnail{
+    position: relative;
+
+      .delete{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+      }
   }
 }

@@ -17,12 +17,12 @@ const createMovie = (movie) => {
 $scope.enterPush = (event) => {
   if (event.keyCode === 13){
     tmdbService.searchMovies(event.target.value).then((results) => {
-        $scope.movies =  results.data.results;
-      }).catch((err) => {
-        console.log("error in search movies", err);
-      });
-    }
-  };
+      $scope.movies =  results.data.results;
+    }).catch((err) => {
+      console.log("error in search movies", err);
+    });
+  }
+};
 
 $scope.saveRated = (tmdbMovie) => {
   let newMovie = createMovie(tmdbMovie);
@@ -32,5 +32,4 @@ $scope.saveRated = (tmdbMovie) => {
     console.log("error in postNewMovie", err);
   });
 };
-
 });

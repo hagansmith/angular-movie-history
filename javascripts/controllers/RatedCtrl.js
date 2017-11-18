@@ -11,14 +11,26 @@ app.controller("RatedCtrl", function($rootScope, $scope, MovieService){
     });
   };
 
-getMovies();
+  getMovies();
 
-$scope.deleteMovie = (movieId) => {
-  MovieService.deleteMovie(movieId).then((result)=>{
-    getMovies();
-  }).catch((err)=>{
-    console.log("error in deleteMovie", err);
-  });
-};
+  $scope.deleteMovie = (movieId) => {
+    MovieService.deleteMovie(movieId).then((result)=>{
+      getMovies();
+    }).catch((err)=>{
+      console.log("error in deleteMovie", err);
+    });
+  };
+
+  $scope.starChange = (event, movie) => {
+    if(event.rating){
+      movie.rating = event.rating;
+      let updatedMovie = MovieService.createMovieObject(movie);
+      MovieService.updateMovie(updatedMovie, movie.id).then(()=>{
+        getMovies();
+      }).catch((err) => {
+        console.log("error in updateMovie", err);
+      });
+    }
+  };
 
 });
